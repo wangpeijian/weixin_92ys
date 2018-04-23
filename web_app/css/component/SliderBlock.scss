@@ -1,0 +1,36 @@
+@charset "UTF-8";
+
+.component-slider-block{
+	height: 100%;
+
+	.scroll-block{
+		overflow: hidden;
+		height: inherit;
+
+		.slide-block{
+			position: relative;
+			overflow: hidden;
+			height: inherit;
+			width: 300%;
+
+			.item-block{
+				height: inherit;
+				width: 33.3%;
+				position: absolute;
+				display: inline-block;
+
+				&.before-block{
+					left: 0;
+				}
+
+				&.current-block{
+					left: 33.3%;
+				}
+
+				&.after-block{
+					left: 66.6%;
+				}
+			}
+		}
+	}
+}

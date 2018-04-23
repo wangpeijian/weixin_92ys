@@ -1,0 +1,79 @@
+@charset "UTF-8";
+
+.component-dialog{
+
+	.dialog-mask {
+		position: fixed;
+		top: 0;
+		bottom: 0;
+		left: 0;
+		right: 0;
+		z-index: 100;
+		background: rgba(184, 184, 184, 0.5);
+	}
+
+	.dialogBg {
+		position: fixed;
+		top: 0;
+		bottom: 0;
+		left: 0;
+		right: 0;
+		z-index: 100;
+	}
+
+	.dialog{
+		position: absolute;
+		top: 50%;
+		left: 8%;
+		right: 8%;
+		margin-top: -150px;
+		background: #ffffff;
+		border-radius: 10px;
+		box-shadow: 0px 0px 4px 0px #e5e5e5;
+		-moz-box-shadow: 0px 0px 4px 0px #e5e5e5;
+		text-align: center;
+
+		.dialog-header{
+			font-size: 14px;
+			padding: 15px 20px;
+			color: #FC6A44;
+			font-weight: bold;
+		}
+
+		.dialog-tip{
+			font-size: 14px;
+			color: #424242;
+			line-height: 22px;
+			margin-bottom: 20px;
+			padding: 0 20px;
+		}
+
+		.dialog-bottom{
+			height: 45px;
+			color: #569ff4;
+			font-size: 14px;
+			border-top: 1px solid #e5e5e5;
+
+			.min-btn.cancel-btn{
+				float: left;
+				border-right: 1px solid #e5e5e5;
+				height: 44px;
+				line-height: 44px;
+				width: 50%;
+			}
+
+			.min-btn.ok-btn{
+				float: right;
+				height: 44px;
+				line-height: 44px;
+				width: 50%;
+			}
+
+			.big-btn{
+				height: 44px;
+				line-height: 44px;
+				width: 100%;
+			}
+		}
+	}
+}

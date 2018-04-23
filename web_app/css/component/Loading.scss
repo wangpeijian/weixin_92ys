@@ -1,0 +1,33 @@
+@charset "UTF-8";
+
+.component-loading{
+    z-index: 99;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    margin: -40px 0 0 -40px;
+    width: 80px;
+    height: 80px;
+    background: rgba(0, 0, 0, 0.8);
+    border-radius: 5px;
+    text-align: center;
+
+    .loading-img{
+        width: 25px;
+        height: 25px;
+        display: block;
+        margin: 18px auto 5px auto;
+	    background: url("../../img/page_loading.gif") center / cover no-repeat;
+    }
+
+    .loading-tip{
+	    color: #fff;
+	    font-size: 12px;
+	    position: absolute;
+	    display: block;
+	    text-align: center;
+	    left: 0;
+	    width: 100%;
+	    bottom: 8px;
+    }
+}

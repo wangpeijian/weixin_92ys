@@ -1,0 +1,42 @@
+@charset "UTF-8";
+@import "../Public";
+
+.page-me{
+	
+	.page-content {
+		@include my-fixed(0, 2.5rem, auto);
+		background: url("../../img/my/background.jpg") no-repeat center;
+		background-size: cover;
+		
+		.user-info{
+			text-align: center;
+			padding: 4rem 0 0 0;
+			
+			.head{
+				width: 2.5rem;
+				height: 2.5rem;
+				border-radius: 50%;
+				display: inline-block;
+			}
+			
+			.name{
+				color: #FFFFFF;
+				display: block;
+				font-size: .6rem;
+				padding: .5rem 0 0 0;
+			}
+		}
+		
+		.menu{
+			text-align: center;
+			display: block;
+			padding: 2.5rem 0 0 0;
+			
+			li{
+				color: #FFFFFF;
+				padding: .6rem;
+				font-size: .9rem;
+			}
+		}
+	}
+}

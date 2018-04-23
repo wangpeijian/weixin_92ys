@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<!--<form name="Form2" action="/postFile" method="post"  enctype="multipart/form-data">-->
+    <!--<h1>使用spring mvc提供的类的方法上传文件</h1>-->
+    <!--<input type="file" name="file1"  multiple="multiple">-->
+    <!--<input type="file" name="file2"  multiple="multiple">-->
+    <!--<input type="submit" value="upload"/>-->
+<!--</form>-->
+
+<!--<input type="file" id="formfile" multiple="multiple">-->
+<!--<button onclick="upload()">上传</button>-->
+
+<input type="file" id="imgInput">
+
+<img src="" id="img">
+
+</body>
+</html>
+
+
+
+<script src="//cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
+<script>
+//    $(function () {
+//        $.ajax({
+//            type: 'post',
+//            url: '/postData',
+//            dataType: 'json',
+//            data: {
+//                id: 1,
+//                name: "哈哈"
+//            },
+//            success: function (res) {
+//                console.log(res);
+//            }
+//        })
+//    })
+//
+//    function upload(){
+//        console.log(123)
+//        var files = $("#formfile")[0].files;
+//
+//        var fod = new FormData();
+//        for(var i = 0; i < files.length; i++){
+//            var file = files[i];
+//            console.log(file)
+//            fod.append("abc" + i, file);
+//        }
+//
+//        $.ajax({
+//            type: 'post',
+//            url: '/postFile',
+//            data: fod,
+//            processData: false,
+//            contentType: false,
+//            success: function (res) {
+//                console.log(res);
+//            }
+//        })
+//    }
+
+
+    $(function(){
+        $.ajax({
+            url: "http://192.168.90.117:8081/user/getList",
+            dataType: 'json',
+            type: "post",
+            "contentType": "application/json; charset=utf-8",
+           data: JSON.stringify({ "phone": "15810577538",
+            "code": "471490",
+            "current": 1}),
+            success: function(res){
+                console.log(res);
+            }
+        })
+
+
+        $("#imgInput").on("change", function(){
+            var files = this.files;
+
+            var file = files[0];
+
+            var fileReader = new FileReader();
+
+            fileReader.onload = function(res){
+                $("#img").attr("src", res.target.result);
+
+//                $.post("http://localhost:8081/helper/postBase64", {
+//                    base64: res.target.result,
+//                    fileName: file.name,
+//                }, function(res){
+//                    console.log(res);
+//                });
+
+                $.ajax({
+                    url: "http://192.168.90.117:8081/helper/postBase64",
+                    dataType: 'json',
+                    type: "post",
+                    "contentType": "application/json; charset=utf-8",
+                    data: JSON.stringify({
+                        base64: res.target.result,
+                        fileName: file.name,
+                    }),
+                    success: function(res){
+                        console.log(res);
+                    }
+                })
+
+            }
+
+            fileReader.readAsDataURL(file);
+        })
+    })
+
+</script>
+</body>
+</html>

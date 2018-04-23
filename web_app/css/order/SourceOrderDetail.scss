@@ -1,0 +1,49 @@
+@charset "UTF-8";
+
+.page-source-order-detail{
+	
+	.page-content{
+		
+		.source-info{
+			position: relative;
+			padding: .5rem 0;
+			height: 5rem;
+			border-bottom: 1px solid #f6f6f6;
+			margin-bottom: .5rem;
+			
+			.title{
+				font-size: .85rem;
+				font-weight: bold;
+				margin-bottom: .3rem;
+			}
+			
+			.author{
+				font-size: .5rem;
+				color: #333333;
+				line-height: 1rem;
+			}
+			
+			.contract-btn{
+				font-size: .5rem;
+				color: #ff0000;
+				font-weight: bold;
+			}
+			
+			.cover{
+				position: absolute;
+				height: 3rem;
+				width: 4rem;
+				right: 0;
+				top: .5rem;
+			}
+		}
+		
+		.info-group{
+			
+			.tip{
+				font-size: .4rem;
+			}
+		}
+	}
+}
+

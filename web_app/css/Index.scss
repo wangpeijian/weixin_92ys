@@ -1,0 +1,217 @@
+@charset "UTF-8";
+
+/*-------页面样式重置-------*/
+*{
+	-moz-box-sizing: border-box; /*Firefox3.5+*/
+	-webkit-box-sizing: border-box; /*Safari3.2+*/
+	-o-box-sizing: border-box; /*Opera9.6*/
+	-ms-box-sizing: border-box; /*IE8*/
+	box-sizing: border-box; /*W3C标准(IE9+，Safari5.1+,Chrome10.0+,Opera10.6+都符合box-sizing的w3c标准语法)*/
+}
+
+html, body{
+	height: 100%;
+}
+
+body {
+	/*解决iphone点击页面出现黑影的问题*/
+	-webkit-tap-highlight-color: rgba(0, 0, 0, 0) !important;
+	/*解决页面滚动不流畅问题 -- 只在需要滚动的区域添加*/
+	/*-webkit-overflow-scrolling : touch;*/
+	/*解决chrome浏览器上font-size最小12px的问题*/
+	-webkit-text-size-adjust: none;
+	/*设置文字抗锯齿，使页面文字更清晰*/
+	-webkit-font-smoothing: antialiased;
+	/*禁止选择页面上的文字*/
+	-webkit-user-select: none;
+	/*防止iphone无法点击*/
+	cursor: pointer;
+	font-family: 微软雅黑, Arial, Microsoft YaHei, 黑体, 宋体, sans-serif !important;
+	font-size: .7rem;
+}
+
+input {
+	box-sizing: border-box;
+	-webkit-appearance: none;
+}
+
+input，textarea {
+	outline: none;
+}
+
+a, abbr, acronym, address, applet, article, aside, audio, b, big, blockquote, body, canvas, caption, center, cite, code, dd, del, details, dfn, div, dl, dt, em, embed, fieldset, figcaption, figure, footer, form, h1, h2, h3, h4, h5, h6, header, html, i, iframe, img, ins, kbd, label, legend, li, mark, menu, nav, object, ol, output, p, pre, q, ruby, s, samp, section, small, span, strike, strong, sub, summary, sup, table, tbody, td, tfoot, th, thead, time, tr, tt, u, ul, var, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font: inherit;
+	vertical-align: baseline;
+	word-wrap: break-word
+}
+
+table {
+	border-collapse: collapse;
+	border-spacing: 0
+}
+
+button, input, select, textarea {
+	outline: 0;
+	-webkit-box-sizing: border-box
+}
+
+article, aside, details, figcaption, figure, footer, header, menu, nav, section {
+	display: block
+}
+
+li, ol, ul {
+	list-style: none
+}
+
+blockquote, q {
+	quotes: none
+}
+
+blockquote:after, blockquote:before, q:after, q:before {
+	content: '';
+	content: none
+}
+
+b, strong {
+	font-weight: 700
+}
+
+img {
+	max-width: 100%;
+	vertical-align: middle;
+	border: 0;
+	-ms-interpolation-mode: bicubic;
+	-webkit-touch-callout: none;
+	display: block;
+}
+
+:focus {
+	outline: 0
+}
+
+a {
+	color: inherit;
+	text-decoration: none;
+	-webkit-touch-callout: none;
+}
+
+a.active {
+	color: inherit;
+}
+
+//轮播图样式
+.slick-slider{
+	margin: 0px auto 0px;
+	box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+	-ms-touch-action: pan-y;
+	touch-action: pan-y;
+	-webkit-tap-highlight-color: transparent;
+	position: relative;
+	display: block;
+	z-index:0;
+	
+	.slick-list{
+		-webkit-transform: translate3d(0,0,0);
+		-moz-transform: translate3d(0,0,0);
+		-ms-transform: translate3d(0,0,0);
+		-o-transform: translate3d(0,0,0);
+		transform: translate3d(0,0,0);
+		position: relative;
+		display: block;
+		margin: 0;
+		padding: 0;
+		overflow: hidden;
+		/*height: 9.5rem;*/
+	}
+	
+	.slick-track{
+		-webkit-transform: translate3d(0,0,0);
+		-moz-transform: translate3d(0,0,0);
+		-ms-transform: translate3d(0,0,0);
+		-o-transform: translate3d(0,0,0);
+		transform: translate3d(0,0,0);
+		left: 0;
+		top: 0;
+		position: relative;
+		display: block;
+		
+		img{
+			width: 100%;
+		}
+	}
+	
+	.slick-slide{
+		float: left;
+		height: 100%;
+		min-height: 1px;
+		display: block;
+	}
+	
+	.slick-prev, .slick-next{
+		display: none!important;
+	}
+	
+	.slick-dots{
+		bottom: 0px;
+		list-style: none;
+		text-align: center;
+		width: 100%;
+		position: absolute;
+		padding: 0;
+		line-height: 1.6;
+		font-family: inherit;
+		height: 1.5rem;
+		z-index: 9;
+		
+		li {
+			position: relative;
+			display: inline-block;
+			padding: 0;
+			cursor: pointer;
+			
+			button {
+				border: 0;
+				background: 0 0;
+				display: block;
+				outline: 0;
+				line-height: 0;
+				font-size: 0;
+				color: transparent;
+				padding: .2rem;
+				cursor: pointer;
+			}
+			
+			button:before {
+				/*position: absolute;*/
+				width: .2rem;
+				height: .2rem;
+				border-radius: .1rem;
+				top: 0;
+				left: 0;
+				content: "";
+				text-align: center;
+				background: rgba(102, 102, 102, 0.52);
+				display: block;
+				transition: .5s;
+			}
+		}
+		
+		li.slick-active{
+			button:before{
+				background: rgba(255, 255, 255, 0.57);
+				width: .75rem;
+			}
+		}
+	}
+}
+//----轮播图样式结束

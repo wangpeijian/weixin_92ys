@@ -1,0 +1,48 @@
+@charset "UTF-8";
+@import "../Public";
+
+.component-navigation{
+
+	.navigation-bar{
+		box-sizing: border-box;
+		@include my-fixed(auto, 0, 2.5rem);
+		background: #242424;
+		//border-top: 1px solid #ccc;
+		overflow: hidden;
+
+		.item{
+			width: 33.3%;
+			display: inline-block;
+			font-size: .6rem;
+			float: left;
+			text-align: center;
+			height: 2.5rem;
+
+			.nav-icon{
+				display: inline-block;
+				height: 1rem;
+				width: 1rem;
+				margin: .25rem 0 .1rem 0;
+				border: 1px solid #ffffff;
+				border-radius: 50%;
+			}
+
+			.nav-name{
+				display: block;
+				color: #999;
+			}
+
+			&.active{
+
+				.nav-icon {
+					background: #ffffff;
+				}
+
+				.nav-name{
+					color: #ffffff;
+				}
+			}
+		}
+	}
+
+}

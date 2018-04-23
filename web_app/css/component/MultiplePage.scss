@@ -1,0 +1,46 @@
+@charset "UTF-8";
+@import "../Public";
+
+.component-multiple-page{
+
+	.scroll-block{
+		overflow: hidden;
+		height: inherit;
+		position: static;
+		@include prefix-content(transform,  translate3d(0,0,0));
+
+		.slide-block{
+			position: relative;
+			padding-bottom: 2rem;
+			height: inherit;
+			width: 400%;
+
+			&.scrolling{
+				@include prefix-content(transition, left .3s)
+			}
+
+			.item-block{
+				height: auto;
+				width: 25%;
+				display: block;
+				float: left;
+				overflow-x: hidden;
+				overflow-y: auto;
+			}
+		}
+	}
+	
+	/*&.auto-height{
+		.scroll-block{
+			position: static;
+			
+			.slide-block{
+				position: relative;
+				
+				.item-block{
+					height: auto;
+				}
+			}
+		}
+	}*/
+}

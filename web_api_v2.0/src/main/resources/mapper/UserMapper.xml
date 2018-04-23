@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ys.mvc.dao.mapper.UserMapper">
+    <!-- <cache type="org.mybatis.caches.ehcache.LoggingEhcache"/>-->
+    <!-- 使用resultMap映射实体类和字段之间的一一对应关系 -->
+    <resultMap type="User" id="UserResultMap">
+        <id property="id" column="id"/>
+        <result property="name" column="name"/>
+        <result property="username" column="username"/>
+        <result property="password" column="password"/>
+        <result property="head" column="head"/>
+        <result property="lastTime" column="lastTime"/>
+        <result property="registerTime" column="registerTime"/>
+        <result property="sex" column="sex"/>
+        <result property="phone" column="phone"/>
+        <result property="province" column="province"/>
+        <result property="city" column="city"/>
+        <result property="style" column="style"/>
+        <result property="roleId" column="roleId"/>
+        <result property="jobTypeId" column="jobTypeId"/>
+        <result property="remark" column="remark"/>
+
+        <association property="role" javaType="Role">
+            <id property="id" column="roleId"/>
+            <result property="tag" column="roleTag"/>
+            <result property="code" column="roleCode"/>
+        </association>
+
+        <association property="jobType" javaType="JobType">
+            <id property="id" column="jobTypeId"/>
+            <result property="name" column="jobName"/>
+            <result property="code" column="jobCode"/>
+        </association>
+    </resultMap>
+
+    <select id="getUserByUsername" parameterType="User" resultMap="UserResultMap">
+       select
+        u.*,
+        r.tag as roleTag, r.code as roleCode
+        from user u, role r
+       where u.username = #{username}
+       and u.roleId = r.id
+    </select>
+
+    <select id="findById" parameterType="String" resultMap="UserResultMap">
+        SELECT
+            u.*,
+            r.tag AS roleTag,
+            r. CODE AS roleCode,
+            j. NAME AS jobName,
+            j. CODE AS jobCode
+        FROM
+            USER u
+        LEFT JOIN role r ON roleId = r.id
+        LEFT JOIN jobtype j ON jobTypeId = j.id
+        WHERE
+            u.id = #{id}
+    </select>
+
+    <select id="getList" parameterType="Pageable" resultMap="UserResultMap">
+          SELECT
+            u.*,
+            r.tag AS roleTag,
+            r. CODE AS roleCode,
+            j. NAME AS jobName,
+            j. CODE AS jobCode
+        FROM
+            USER u
+        LEFT JOIN role r ON roleId = r.id
+        LEFT JOIN jobtype j ON jobTypeId = j.id
+        WHERE
+            r.code = #{object.code}
+        order by u.registerTime DESC
+        limit #{start}, #{paging}
+    </select>
+
+</mapper>

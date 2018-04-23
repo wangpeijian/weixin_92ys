@@ -1,0 +1,60 @@
+@charset "UTF-8";
+@import "../Public";
+
+.component-page-count-footer{
+	
+	.footer {
+		@include my-fixed(auto, 0, 2.5rem);
+		@include prefix-content(box-shadow, 0 0 10px -3px #676767);
+		
+		.unit {
+			font-size: .7rem;
+			color: #ffaca3;
+			font-weight: bold;
+			position: relative;
+			top: .55rem;
+			margin-left: .5rem;
+		}
+		
+		.money {
+			font-size: 1rem;
+			color: #ff0000;
+			position: relative;
+			top: .55rem;
+			margin-left: .2rem;
+			
+			.decimal {
+				font-size: .7rem;
+			}
+		}
+		
+		.invalid {
+			font-size: .7rem;
+			color: #757575;
+			position: relative;
+			top: .55rem;
+			margin-left: .6rem;
+			text-decoration: line-through;
+			
+			.decimal {
+				font-size: .5rem;
+			}
+		}
+		
+		.buy {
+			float: right;
+			font-size: .6rem;
+			color: #ffffff;
+			line-height: 1.5rem;
+			background: #FF2F00;
+			padding: 0 2rem;
+			margin: .5rem .5rem 0 0;
+			border-radius: .75rem;
+			text-align: center;
+			
+			&.disable{
+				background: #999999;
+			}
+		}
+	}
+}

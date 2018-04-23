@@ -1,0 +1,28 @@
+@charset "UTF-8";
+@import "../Public";
+
+.page-relation-list{
+	
+	.list{
+		width: 100%;
+		
+		.item{
+			height: 7rem;
+			margin: 0 0 .3rem 0;
+			background-size: cover;
+			background-position: center;
+			position: relative;
+			
+			.title {
+				color: #FFFFFF;
+				font-size: .9rem;
+				text-align: center;
+				@include prefix-content(transform, translateY(-50%));
+				position: absolute;
+				top: 50%;
+				left: 15%;
+				right: 15%;
+			}
+		}
+	}
+}

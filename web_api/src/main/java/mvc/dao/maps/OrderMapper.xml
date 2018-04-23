@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="mvc.dao.maps.OrderMapper">
+    <!-- <cache type="org.mybatis.caches.ehcache.LoggingEhcache"/>-->
+    <resultMap type="Order" id="OrderResultMap">
+        <id property="id" column="id"/>
+        <result property="price" column="price"/>
+        <result property="type" column="type"/>
+        <result property="title" column="title"/>
+        <result property="cover" column="cover"/>
+        <result property="discount" column="discount"/>
+        <result property="date" column="date"/>
+        <result property="status" column="status"/>
+        <result property="remark" column="remark"/>
+        <result property="customerId" column="customerId"/>
+        <result property="authorId" column="authorId"/>
+
+        <association property="customer" javaType="User">
+            <result property="name" column="customerName"/>
+        </association>
+
+        <association property="author" javaType="User">
+            <id property="id" column="authorId"/>
+            <result property="name" column="authorName"/>
+            <result property="head" column="head"/>
+            <result property="style" column="style"/>
+
+            <association property="role" javaType="Role">
+                <id property="id" column="roleId"/>
+                <result property="tag" column="roleTag"/>
+                <result property="code" column="roleCode"/>
+            </association>
+
+            <association property="jobType" javaType="JobType">
+                <id property="id" column="jobTypeId"/>
+                <result property="name" column="jobName"/>
+                <result property="code" column="jobCode"/>
+            </association>
+        </association>
+
+        <collection property="ProductItemSnapshot" javaType="java.util.List" ofType="ProductItemSnapshot">
+            <id property="id" column="groupId"/>
+            <result property="name" column="groupName"/>
+        </collection>
+    </resultMap>
+
+    <select id="findById" parameterType="String" resultMap="OrderResultMap">
+        select o.*,
+         pis.name AS groupName, pis.id AS groupId,
+         a.name AS authorName, a.head AS head, a.style AS style,
+         j.id AS jobTypeId, j.`name` AS jobName, j.code AS jobCode,
+         r.id AS roleId, r.`code` AS roleCode, r.tag AS roleTag
+
+        from `order` o
+
+        LEFT JOIN productitem_snapshot pis
+        ON o.id = pis.pid
+        AND pis.isItem = 0
+
+        LEFT JOIN `user` a
+        ON o.authorId = a.id
+
+        LEFT JOIN jobtype j
+        ON a.jobTypeId = j.id
+
+        LEFT JOIN role r
+        ON a.roleId = r.id
+
+        WHERE o.id = #{id}
+
+    </select>
+
+    <select id="getList" parameterType="Pageable" resultMap="OrderResultMap">
+        select o.*,
+        u.name AS authorName, u.head AS head, u.style AS style,
+        j.id AS jobTypeId, j.`name` AS jobName, j.code AS jobCode
+
+        from `order` o
+
+        LEFT JOIN `user` a
+        ON o.authorId = a.id
+
+        LEFT JOIN jobtype j
+        ON a.jobTypeId = j.id
+
+        order by o.date DESC
+        limit #{start}, #{paging}
+    </select>
+
+    <select id="getUserOrder" parameterType="String" resultMap="OrderResultMap">
+        select o.*
+        from `order` o
+        where o.customerId = #{id}
+        order by o.date DESC
+    </select>
+
+</mapper>

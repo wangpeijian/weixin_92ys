@@ -1,0 +1,61 @@
+@charset "UTF-8";
+
+/*css动画前缀*/
+@mixin prefix-animation($animation-name){
+    animation:$animation-name;
+    -webkit-animation:$animation-name;
+    -moz-animation:$animation-name;
+    -ms-animation:$animation-name;
+}
+@mixin prefix-keyframes($animation-name){
+    @keyframes #{$animation-name}{
+        @content;
+    }
+    @-webkit-keyframes #{$animation-name}{
+        @content;
+    }
+    @-moz-keyframes #{$animation-name}{
+        @content;
+    }
+    @-ms-keyframes #{$animation-name}{
+        @content;
+    }
+}
+
+/*css3前缀*/
+@mixin prefix-content($content-name,$content-txt){
+    #{$content-name}:$content-txt;
+    -webkit-#{$content-name}:$content-txt;
+    -moz-#{$content-name}:$content-txt;
+    -ms-#{$content-name}:$content-txt;
+}
+
+/*fixed元素*/
+@mixin my-fixed($top:atuo, $bottom:auto, $height:auto){
+    position: fixed;
+    top: $top;
+    bottom: $bottom;
+    left: 0;
+    right: 0;
+    height: $height;
+    background: #FFFFFF;
+    overflow-y: auto;
+    -webkit-overflow-scrolling : touch;
+}
+
+/*设置超长则省略*/
+@mixin my-lineLimit($line: 1){
+    overflow: hidden;
+    letter-spacing: .4px;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: $line;
+    -webkit-box-orient: vertical;
+}
+
+@mixin my-oneLine() {
+  width: 100%;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}

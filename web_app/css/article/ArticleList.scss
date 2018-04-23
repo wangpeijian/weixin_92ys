@@ -1,0 +1,50 @@
+@charset "UTF-8";
+@import "../Public";
+
+.page-article-list{
+	padding-bottom: 2.5rem;
+	
+	.page-title {
+		height: 2.5rem;
+		text-align: center;
+		
+		.logo {
+			display: inline-block;
+			height: 2.5rem;
+		}
+	}
+	
+	.list{
+		overflow: hidden;
+		
+		a{
+			
+			&:nth-child(even){
+				.title{
+					margin-top: 2rem;
+				}
+			}
+			
+			&:nth-child(odd){
+				.title{
+					margin-top: 6rem;
+				}
+			}
+			
+			.item{
+				width: 50%;
+				height: 8rem;
+				float: left;
+				color: #FFFFFF;
+				font-size: .8rem;
+				background-position: center;
+				background-size: cover;
+				
+				.title{
+					padding: 0 .5rem;
+					@include my-lineLimit(2);
+				}
+			}
+		}
+	}
+}

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ys.mvc.dao.mapper.ArticleMapper">
+     <!--<cache type="org.mybatis.caches.ehcache.LoggingEhcache"/>-->
+
+    <select id="getList" parameterType="Pageable" resultMap="ArticleResultMap">
+             select a.id, a.title, a.publishTime, a.updateTime, a.status, a.cover, u.name from article a
+             left join user u
+             on a.userId = u.id
+             order by a.updateTime DESC limit #{start}, #{paging}
+    </select>
+    <!-- 使用resultMap映射实体类和字段之间的一一对应关系 -->
+    <resultMap type="Article" id="ArticleResultMap">
+        <id property="id" column="id"/>
+        <result property="title" column="title"/>
+        <result property="publishTime" column="publishTime"/>
+        <result property="updateTime" column="updateTime"/>
+        <result property="status" column="status"/>
+        <result property="cover" column="cover"/>
+        <result property="content" column="content"/>
+        <result property="shareDescribe" column="shareDescribe"/>
+        <association property="user" javaType="User">
+            <id property="id" column="userId"/>
+            <result property="name" column="name"/>
+            <result property="head" column="head"/>
+
+            <association property="jobType" javaType="JobType">
+                <id property="id" column="jobTypeId"/>
+                <result property="name" column="jobName"/>
+                <result property="code" column="jobCode"/>
+            </association>
+        </association>
+    </resultMap>
+
+    <select id="getSelfList" parameterType="Pageable" resultMap="ArticleResultMap">
+        select a.id, a.title, a.publishTime, a.updateTime, a.status, a.cover, u.name from article a, user u
+        where a.userId = #{object.userId}
+        and a.userId = u.id
+        order by a.updateTime DESC limit #{start}, #{paging}
+    </select>
+
+    <select id="getDetail" parameterType="String" resultMap="ArticleResultMap">
+        SELECT
+            a.id,
+            a.publishTime,
+            a.content,
+            a.title,
+            a.cover,
+            a.shareDescribe,
+            u.id AS userId,
+            u.`name`,
+            u.head,
+            j.id AS jobTypeId,
+            j.`name` AS jobName,
+            c.url
+        FROM
+            article AS a
+        JOIN `user` AS u ON a.userId = u.id
+        JOIN jobtype AS j ON u.jobTypeId = j.id
+        LEFT JOIN carousel AS c ON c.pId = a.id
+        WHERE a.id = #{id}
+        ORDER BY
+            c.`no`
+    </select>
+
+</mapper>

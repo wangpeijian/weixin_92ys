@@ -1,0 +1,41 @@
+@charset "UTF-8";
+@import "../Public";
+
+.page-contact{
+	background: url('../../img/info/about-background.jpg') no-repeat fixed;
+	background-size: cover;
+	
+	.page-content {
+		background: rgba(0, 0, 0, 0.7);
+		padding: 1rem .7rem 3rem .7rem;
+		color: #FFFFFF;
+		
+		.part-title{
+			font-size: .6rem;
+			font-weight: bold;
+			margin: .5rem 0 .8rem 0;
+		}
+		
+		.title {
+			font-size: .55rem;
+			font-weight: bold;
+		}
+		
+		.content {
+			font-size: .55rem;
+			text-indent: 2em;
+			margin: .8rem 0;
+		}
+		
+		.confirm-btn{
+			display: block;
+			margin: 2rem auto 0 auto;
+			background: #FF2F00;
+			text-align: center;
+			width: 9rem;
+			line-height: 1.8rem;
+			border-radius: .9rem;
+			font-size: .8rem;
+		}
+	}
+}

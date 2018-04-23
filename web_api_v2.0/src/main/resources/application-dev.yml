@@ -1,0 +1,11 @@
+spring:
+  datasource:
+      driver-class-name: com.mysql.jdbc.Driver
+      url: jdbc:mysql://localhost:3306/92ys?useUnicode=true&characterEncoding=UTF-8&zeroDateTimeBehavior=convertToNull&autoReconnect=true&useSSL=false&serverTimezone=GMT%2b8
+      username: root
+      password:
+
+webConfig:
+  appId: 123
+  uploadImagesPath: D:\apache-tomcat-9.0.0.M21\webapps\uploadImages\
+  viewImagePath: http://localhost/uploadImages/

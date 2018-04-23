@@ -1,0 +1,66 @@
+@charset "UTF-8";
+@import "../Public";
+
+.page-about{
+	
+	.page-content {
+		background: url('../../img/info/about-background.jpg') no-repeat fixed;
+		background-size: cover;
+		
+		.header {
+			padding: 2rem 0 1.5rem 0;
+			background: rgba(0, 0, 0, 0.3);
+			color: #FFFFFF;
+			text-align: center;
+			
+			.logo {
+				display: inline-block;
+				height: 4rem;
+				width: 4rem;
+				margin: 0 auto;
+				background: url('../../img/logo.png') no-repeat;
+				background-size: cover;
+			}
+			
+			.company-name {
+				font-size: .7rem;
+				margin: 1rem 0 .8rem 0;
+				font-weight: bold;
+			}
+			
+			.slogan {
+				font-size: .6rem;
+				color: rgba(255, 255, 255, 0.76);
+			}
+		}
+		
+		.body {
+			background: rgba(255, 255, 255, 0.8);
+			padding: 1rem .8rem 2rem .8rem;
+			
+			.title {
+				color: #333333;
+				font-size: .55rem;
+				font-weight: bold;
+				
+				&.link {
+					color: #FF2F00;
+					margin: 1rem 0 0 0;
+				}
+			}
+			
+			.content {
+				color: rgba(51, 51, 51, 0.76);
+				font-size: .55rem;
+				text-indent: 2em;
+				margin: .8rem 0;
+				
+				a {
+					padding: 0 0 0 .5rem;
+				}
+			}
+		}
+		
+	}
+
+}

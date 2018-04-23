@@ -1,0 +1,240 @@
+@charset "UTF-8";
+@import "../Public";
+
+.page-product {
+	
+	.preview-image{
+		@include my-fixed(0, 0, auto);
+		bottom: inherit;
+		left: inherit;
+		right: inherit;
+		z-index: 999;
+		transform: rotate(90deg);
+		background-size: contain;
+		background-repeat: no-repeat;
+		background-position: 50%;
+		background-color: #000;
+	}
+	
+	.page-content {
+		padding: 0 0 2.5rem 0;
+		
+		.header {
+			padding: 1.2rem 0 0 0;
+			text-align: center;
+			
+			.user-info{
+				.head{
+					height: 2.75rem;
+					width: 2.75rem;
+					border-radius: 50%;
+					display: inline-block;
+					margin-bottom: .3rem;
+				}
+				
+				.name{
+					color: #272727;
+					font-size: .7rem;
+					display: block;
+					font-weight: bold;
+				}
+				
+				.duty{
+					color: #757575;
+					font-size: .5rem;
+					padding: .2rem 0 0 0;
+					display: block;
+				}
+				
+				.style{
+					font-size: .5rem;
+					color: #ff0000;
+					padding: .5rem 1rem .7rem 1rem;
+					overflow: hidden;
+					
+					.style-item {
+						margin: .2rem;
+						display: inline-block;
+						background: #FFFFFF;
+						@include prefix-content(box-shadow, 0 0 4px rgba(170, 170, 170, 0.5));
+						border-radius: .1rem;
+						padding: .1rem .3rem;
+						float: left;
+					}
+				}
+			}
+			
+			.article-info{
+				
+				.article-title{
+					margin-bottom: 1rem;
+					font-size: 1rem;
+					font-weight: bold;
+					color: #272727;
+				}
+				
+				.info-line{
+					overflow: hidden;
+					padding: 0 .5rem .3rem .5rem;
+					
+					.create-time{
+						float: left;
+						
+						&::before{
+							content: ' ';
+							display: inline-block;
+							height: .6rem;
+							width: .6rem;
+							background: url("../../img/product/public_create_time_icon.png") no-repeat center;
+							background-size: contain;
+							position: relative;
+							top: .1rem;
+							padding: 0 .3rem 0 0;
+						}
+						
+						font-size: .5rem;
+						color: #757575;
+					}
+				}
+			}
+		}
+		
+		.body {
+			padding: 0 .5rem;
+			
+			.content{
+				font-size: .6rem;
+				padding: .5rem 0 4rem 0;
+			}
+		}
+		
+		.menu {
+			@include prefix-content(box-shadow, 0 0 10px -3px #676767);
+			
+			.list{
+				border-bottom: .3rem solid #f6f6f6;
+				
+				.menu-header{
+					line-height: 2rem;
+					padding: 0 .5rem;
+					position: relative;
+					
+					.title{
+						font-weight: bold;
+						font-size: .8rem;
+						color: #272727;
+					}
+					
+					.count-price{
+						float: right;
+						margin: 0 1.8rem 0 0;
+						height: 2rem;
+						
+						.unit{
+							color: #ffaca3;
+							font-size: .5rem;
+							padding: 0 .3rem 0 0;
+						}
+						
+						.money{
+							color: #ff0000;
+							font-size: .8rem;
+						}
+					}
+					
+					.icon-menu-btn{
+						display: inline-block;
+						width: 1.5rem;
+						height: 1.5rem;
+						border-radius: 50%;
+						border: 1px solid #E3E3E3;
+						background: url("../../img/product/public_menu_slid_item_icon.png") no-repeat center;
+						background-size: 40%;
+						position: absolute;
+						right: .5rem;
+						top: .25rem;
+						transition: .5s;
+						
+						&.active{
+							@include prefix-content(transform, rotate(-180deg));
+						}
+					}
+				}
+				
+				.item-list{
+					display: none;
+					
+					&.active{
+						display: block;
+					}
+					
+					.item{
+						padding: 0 .5rem;
+						line-height: 2rem;
+						height: 2rem;
+						position: relative;
+						
+						.item-title{
+							font-size: .7rem;
+							color: #272727;
+							@include my-oneLine();
+							width: 6rem;
+							display: inline-block;
+						}
+						
+						.item-money{
+							color: #ff0000;
+							font-size: .6rem;
+							float: right;
+							margin-right: 6rem;
+							
+							.unit{
+								color: #ffaca3;
+							}
+						}
+						
+						.counter-box{
+							position: absolute;
+							top: 0;
+							right: .25rem;
+							padding: 0 2rem;
+							width: 6rem;
+							text-align: center;
+							
+							.icon-counter-sub{
+								display: inline-block;
+								width: 1.5rem;
+								height: 1.5rem;
+								border-radius: 50%;
+								border: 1px solid #E3E3E3;
+								background: url("../../img/product/public_menu_remove_item_icon.png") no-repeat center;
+								background-size: 40%;
+								position: absolute;
+								left: .25rem;
+								top: .25rem;
+							}
+							
+							.counter-num{
+								font-size: .6rem;
+							}
+							
+							.icon-counter-add{
+								display: inline-block;
+								width: 1.5rem;
+								height: 1.5rem;
+								border-radius: 50%;
+								border: 1px solid #E3E3E3;
+								background: url("../../img/product/public_menu_add_item_icon.png") no-repeat center;
+								background-size: 40%;
+								position: absolute;
+								right: .25rem;
+								top: .25rem;
+							}
+						}
+					}
+				}
+				
+			}
+		}
+	}
+}

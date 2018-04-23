@@ -1,0 +1,58 @@
+@charset "UTF-8";
+
+.page-source-order-confirm{
+	
+	.page-content{
+		
+		.order-header{
+			border-bottom: 1px solid #f6f6f6;
+			margin-bottom: .7rem;
+			padding: .5rem;
+			position: relative;
+			height: 5rem;
+			
+			.info-box{
+				margin: .4rem 5rem 0 0;
+				color: #333333;
+				
+				.title{
+					font-size: 1rem;
+					margin-bottom: .4rem;
+				}
+				
+				.author{
+					font-size: .5rem;
+				}
+			}
+			
+			.cover{
+				position: absolute;
+				right: .5rem;
+				top: .9rem;
+				height: 3rem;
+				width: 4rem;
+			}
+		}
+		
+		
+		.order-body{
+			border-bottom: 1px solid #f6f6f6;
+			margin-bottom: .7rem;
+			
+			.item-count{
+				font-size: .6rem;
+				color: #333333;
+				padding: .5rem .5rem;
+				
+				.label{
+				
+				}
+				
+				.data{
+					float: right;
+				}
+			}
+		}
+	}
+	
+}

@@ -1,0 +1,15 @@
+@charset "UTF-8";
+@import "../Public";
+
+.component-preview-image{
+
+	.preview-image-bg{
+		@include my-fixed(0,0,auto);
+		background: #000000;
+		z-index: 99999;
+
+		.preview-image{
+			height: 100%;
+		}
+	}
+}

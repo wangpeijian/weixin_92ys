@@ -1,0 +1,24 @@
+@charset "UTF-8";
+
+.component-scroll-list{
+    position: fixed;
+    top: 42px;
+    bottom: 50px;
+    background: #f6f6f9;
+    width: 100%;
+    overflow-y: auto;
+    background: #f6f6f9;
+    /*解决页面滚动不流畅问题*/
+    -webkit-overflow-scrolling : touch;
+
+	.list-loading-block{
+
+		.loading-img{
+
+		}
+
+		.tip{
+
+		}
+	}
+}

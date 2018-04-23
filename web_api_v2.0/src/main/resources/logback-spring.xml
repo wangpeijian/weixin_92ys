@@ -1,0 +1,27 @@
+<configuration>
+    <!-- %m输出的信息,%p日志级别,%t线程名,%d日期,%c类的全名,,,, -->
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <charset>UTF-8</charset>
+            <pattern>%d %p (%file:%line\)- %m%n</pattern>
+        </encoder>
+    </appender>
+    <appender name="infoLog"
+              class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <File>log/info.log</File>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>log/info.log.%d</fileNamePattern>
+        </rollingPolicy>
+        <encoder>
+            <pattern>
+                %d,%m%n
+            </pattern>
+        </encoder>
+    </appender>
+    <root level="info">
+        <appender-ref ref="STDOUT" />
+    </root>
+    <logger name="com.ys" level="debug">
+        <appender-ref ref="infoLog" />
+    </logger>
+</configuration>

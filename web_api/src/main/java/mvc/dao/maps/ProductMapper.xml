@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="mvc.dao.maps.ProductMapper">
+    <!-- <cache type="org.mybatis.caches.ehcache.LoggingEhcache"/>-->
+    <resultMap type="Product" id="ProductResultMap">
+        <id property="id" column="id"/>
+        <result property="name" column="name"/>
+        <result property="type" column="type"/>
+        <result property="title" column="title"/>
+        <result property="cover" column="cover"/>
+        <result property="content" column="content"/>
+        <result property="discount" column="discount"/>
+        <result property="updateTime" column="updateTime"/>
+        <result property="resourcesTypeId" column="resourcesTypeId"/>
+        <result property="articleId" column="articleId"/>
+        <result property="authorId" column="authorId"/>
+
+        <association property="user" javaType="User">
+            <id property="id" column="authorId"/>
+            <result property="name" column="authorName"/>
+            <result property="head" column="head"/>
+            <result property="style" column="style"/>
+
+            <association property="role" javaType="Role">
+                <id property="id" column="roleId"/>
+                <result property="tag" column="roleTag"/>
+                <result property="code" column="roleCode"/>
+            </association>
+
+            <association property="jobType" javaType="JobType">
+                <id property="id" column="jobTypeId"/>
+                <result property="name" column="jobName"/>
+                <result property="code" column="jobCode"/>
+            </association>
+        </association>
+
+        <association property="resourcesType" javaType="ResourcesType">
+            <id property="id" column="resourcesTypeId"/>
+            <result property="cover" column="resourcesTypeCover"/>
+        </association>
+
+        <collection property="productItems" javaType="java.util.List" ofType="ProductItem">
+            <id property="id" column="groupId"/>
+            <result property="name" column="groupName"/>
+            <result property="no" column="no"/>
+        </collection>
+
+        <collection property="carousels" javaType="java.util.List" ofType="Carousel">
+            <id property="id" column="carouselId"/>
+            <result property="url" column="carouselUrl"/>
+        </collection>
+    </resultMap>
+
+    <select id="findById" parameterType="String" resultMap="ProductResultMap">
+        select p.*,
+         rs.cover AS resourcesTypeCover,
+         pi.name AS groupName, pi.id AS groupId, pi.`no` AS `no`,
+         u.name AS authorName, u.head AS head, u.style AS style,
+         j.id AS jobTypeId, j.`name` AS jobName, j.code AS jobCode,
+         r.id AS roleId, r.`code` AS roleCode, r.tag AS roleTag
+
+        from product p
+
+        LEFT JOIN resourcestype rs
+        ON p.resourcesTypeId = rs.id
+
+        LEFT JOIN productitem pi
+        ON p.id = pi.pid
+        AND pi.isItem = 0
+
+        LEFT JOIN `user` u
+        ON p.authorId = u.id
+
+        LEFT JOIN jobtype j
+        ON u.jobTypeId = j.id
+
+        LEFT JOIN role r
+        ON u.roleId = r.id
+
+        WHERE p.id = #{id}
+
+    </select>
+
+    <select id="getList" parameterType="Pageable" resultMap="ProductResultMap">
+        select p.*,
+        rs.cover AS resourcesTypeCover,
+        u.name AS authorName, u.head AS head, u.style AS style,
+        j.id AS jobTypeId, j.`name` AS jobName, j.code AS jobCode
+
+        from product p
+
+        LEFT JOIN resourcestype rs
+        ON p.resourcesTypeId = rs.id
+
+        LEFT JOIN `user` u
+        ON p.authorId = u.id
+
+        LEFT JOIN jobtype j
+        ON u.jobTypeId = j.id
+
+        WHERE p.type = #{object.type}
+        order by p.updateTime DESC
+        limit #{start}, #{paging}
+
+    </select>
+
+
+    <select id="getWorkerDataByType" parameterType="JobType" resultMap="ProductResultMap">
+        select
+        p.id,
+        u.id AS authorId,
+        u.name AS authorName,
+        u.head AS head,
+        u.style AS style,
+        j.id AS jobTypeId,
+        j.`name` AS jobName,
+        c.id AS carouselId,
+        c.`url` AS carouselUrl
+
+        from product p
+
+        JOIN `user` u
+        ON p.authorId = u.id
+
+        LEFT JOIN jobtype j
+        ON u.jobTypeId = j.id
+
+        LEFT JOIN carousel c
+        ON p.id = c.pId
+
+        <if test=" id != '' ">
+            WHERE j.id = #{id}
+        </if>
+
+        ORDER BY p.updateTime, c.`no`
+    </select>
+</mapper>
